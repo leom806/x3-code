@@ -1,22 +1,21 @@
 {
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "x3",
-	"scopeName": "source.x3.src",
-	"fileTypes": [
-		".src"
+	"patterns": [
+		{
+			"include": "#keywords"
+		}
 	],
-	"patterns": [ // Begin
-	{
-		"name" : "keyword.control.untitled",
-		"match" : "\b(?i:if|while|for|return|endif|wend)\b"
+	"repository": {
+		"keywords": {
+			"patterns": [
+				{
+					"name" : "string.quoted.double.x3",
+					"begin": "\"",
+					"end": "\""
+				}
+			]
+		}
 	},
-	{
-		"name"	: "string.quoted.double",
-		"begin": "a",
-		"end": "a"
-	},{
-		"name"	: "string.quoted.single",
-		"begin": "'",
-		"end": "'"
-	}
-	] // End
+	"scopeName": "source.src"
 }

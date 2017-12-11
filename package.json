@@ -20,7 +20,7 @@
         "grammars": [{
             "language": "x3",
             "scopeName": "source.src",
-            "path": "./syntaxes/x3.tmLanguage"
+            "path": "./syntaxes/x3.tmLanguage.json"
         }]
     },
     "scripts": {
