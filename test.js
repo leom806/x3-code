@@ -1,4 +1,4 @@
 module.exports = function(){
   console.log("OK");
-  return 0;
+  return 1;
 };
