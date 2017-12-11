@@ -1,6 +1,6 @@
 # Sage ERP X3 (Adonix 4GL) Syntax Highlighting 
 
-Extension feature for Visual Studio Code.  [![Build Status](https://travis-ci.org/leom806/x3-code.png?branch=master)](https://travis-ci.org/leom806/x3-code)
+> Extension feature for Visual Studio Code  [![Build Status](https://travis-ci.org/leom806/x3-code.png?branch=master)](https://travis-ci.org/leom806/x3-code)
 
 
 ## Requirements
