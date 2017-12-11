@@ -1,1 +1,4 @@
-language: x3
+language: node_js
+node_js:
+  - "iojs"
+  - "7"

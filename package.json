@@ -22,5 +22,8 @@
             "scopeName": "source.src",
             "path": "./syntaxes/x3.tmLanguage.json"
         }]
+    },
+    "scripts": {
+        "test": "node test.js"
     }
 }
