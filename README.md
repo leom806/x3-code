@@ -5,7 +5,11 @@ Extension feature for Visual Studio Code.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Create a x3-code named folder inside your "/.vscode/extensions/". 
+
+Copy all files in yours recent created folder. 
+
+Reload VS Code and enjoy.
 
 ## Release Notes
 
