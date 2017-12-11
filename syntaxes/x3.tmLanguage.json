@@ -13,13 +13,13 @@
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.x3",
-				"match": "\\b(if|while|endif|for|return)\\b"
+				"match": "\\b(?i:File|Close|Look|Read|Readlock|Lock|Unlock|Link|Write|Rewrite|Delete|Update|Filter|Choose|Mask|Transmask|Setmok|Fillbox|Leftbox|Setlbox|Dislbox|Pick|Affzo|Envzo|Effzo|Actzo|Diszo|Grizo|Chgfmt|Chgtbk|Chgtzn|Chgtfd|Chgstl|Titcol|Discombo|Columns|Openi|Openo|Openio|Iomode|Getseq|Putseq|Rdseq|Wrseq|Seek|Field|Formula|Report|Default|Assign|Append|Raz|Kill|Insa|Dela|Sorta|Call|Func|Opadxd|Calliu|Funciu|Gosub|Goto|Onerrgo|Onintgo|Onevent|Onkey|Sleep|Inter|Nointer|Case|When|Endcase|If|Elsif|Else|Endif|For|Next|Repeat|Until|While|Wend|Break|Trbegin|Commit|Rollback|Anasql|Execsql|Opldap|Clldap|Srldapbs|Srldaplv|Srldaptr|Nxldap|Askui|Blk|Callilog|Callocx|Callui|Calljs|Dbgaff|Edi|Getui|Infbox|Listimp|Men|Nap|Pikltb|Pokltb|Pmt|Reb|Run|Seldest|Selimp|Send|Setfct|Setlob|Setmdu|System|Enable|Disable|Addmen|Additm|Inftxt|Infimg|Hlpbox|Setmode|Boxact|Boxinp|Inpbox|Mesbox|Errbox|Rptstat|Rptfile|Genws|Genasmx|Convxml|Supli|Selbox|Qstbox|Wrnbox|Endbox|Dbgbox|Opsock|Setstc|Setinstance|Titled|Insli|Saizo|Free|Freeinstance|Setgus|Boxclr|Fmethod|Where|Hint|Using|Order|With|Newstc|Newinstance|Not|First|Last|Curr|Prev|Button|Coded|As|Folder|Listbox|Treebox|Pickbox)\\b"
 			}]
 		},
 		"strings": {
 			"name": "string.quoted.double.x3",
-			"begin": "\"",
-			"end": "\"",
+			"begin": "\"|'",
+			"end": "\"|'",
 			"patterns": [
 				{
 					"name": "constant.character.escape.x3",
@@ -27,6 +27,7 @@
 				}
 			]
 		}
+
 	},
 	"scopeName": "source.src"
 }
