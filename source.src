@@ -1,0 +1,286 @@
+# Carrega arquivo XML da ORACLE -> VSDATA
+
+Subprog GET_XML()
+
+  Local Integer STAT
+  
+  Local Char TIPO : TIPO = ''
+  Local Integer TAMANHO_LIMITE : TAMANHO_LIMITE = 10000 # Linhas
+  Local Char ARQUIVO(100)
+  Local Char MSG(200)
+  Local Char FICCLI(100)
+  Local Clbfile CONTEUDO
+  Local Integer RESPONSE  
+
+  # Abre Tabelas
+  If !clalev([F:FCY]) : Local File FACILITY [FCY] : Endif
+  If !clalev([F:SQH]) : Local File SQUOTE   [SQH] : Endif
+
+
+  # TESTES
+  ARQUIVO = 'OPS_Cart_4500272_export - Cristal'
+
+  RESPONSE = filinfo(filpath('tmp', ARQUIVO, TIPO),7)
+
+  If (RESPONSE <= 0)
+    ARQUIVO = ""
+    Call COPSRV(FICCLI,ARQUIVO,STAT) From ORDSYS
+  Endif
+
+  If ARQUIVO="" 
+    End
+  Endif
+
+  Openi filpath('tmp', ARQUIVO, TIPO) Using [ZXML]
+  If fstat<>0 Then End "Arquivo não encontrado." Endif
+
+  Iomode adxium 0 Using [ZXML] # UTF-8
+
+  Call OUVRE_TRACE("") From LECFIC  
+
+
+  Gosub INIT_SQL
+
+  Gosub __BEFORE__ From TRTZSIM
+
+  For I=1 To TAMANHO_LIMITE
+
+    Rdseq MSG Using [ZXML]
+    Break(MSG='')
+
+    CONTEUDO +=  MSG
+
+    ###
+    Gosub GET_CONTENT
+
+    If (I=TAMANHO_LIMITE and MSG <> '') 
+      Call ECR_TRACE ('Tamanho limite atingido. Por favor, entre em contato com o administrador do sistema.',-1) From GESECRAN
+      End "Problema com o tamanho do arquivo."
+    Endif
+  Next
+
+  Local Integer SIZE : SIZE = 100
+  Local Char SELECT(100)(SIZE)
+
+  SELECT(05) = "SELECT TOP 100 id, num, part, description, price, qntd, config From ZXML "
+  #SELECT(10) = "WHERE num LIKE '_.0_' "
+  #SELECT(15) = "OR num LIKE '__.0_' "
+  #SELECT(18) = "WHERE description LIKE '%Oracle Premier Support for Systems%' "
+  SELECT(20) = "ORDER BY id ASC "
+
+
+  # USA OS DADOS DA TABELA TEMPORÁRIA
+  For (INTEGER ID,
+&      CHAR NUM(50), 
+&      CHAR PART(50), 
+&      CHAR DESCRIPTION(250), 
+&      DECIMAL PRICE, 
+&      INTEGER QNTD,
+&      INTEGER CONFIG) From "5" Sql SELECT(0..SIZE-1) As [ZXML]
+
+    #Call ECR_TRACE ("Cart: "+[ZXML]NUM, 0) From GESECRAN
+    #Call ECR_TRACE ("Part: "+[ZXML]PART, 0) From GESECRAN
+    #Call ECR_TRACE ([ZXML]DESCRIPTION, 0) From GESECRAN
+    #Call ECR_TRACE ("Preç: "+num$([ZXML]PRICE), 0) From GESECRAN
+    #Call ECR_TRACE ("Qntd: "+num$([ZXML]QNTD), 0) From GESECRAN
+    #Call ECR_TRACE ("Conf: "+num$([ZXML]CONFIG), 0) From GESECRAN
+    #Call ECR_TRACE ("------", 0) From GESECRAN
+
+
+    Gosub __EXEC__ From TRTZSIM
+
+  Next
+
+  Execsql From '5' Sql "DROP TABLE ZXML" 
+
+  Call FERME_TRACE From LECFIC
+  Call LEC_TRACE From LECFIC
+
+  Gosub __AFTER__ From TRTZSIM
+
+End  # FIM SUBPROG
+
+
+
+$TRY_COMMIT
+  If GOK=1
+    Commit
+  Else 
+    Rollback
+  Endif
+Return
+
+
+Local Char AUX (15) # Salva o cartNumber corrente
+
+$INIT_SQL
+  Local Integer SIZE : SIZE = 100
+  Local Char QUERY(200)(SIZE)
+  
+  #Execsql From '5' Sql "DROP TABLE ZXML"
+
+ #QUERY(01) = "IF object_id('ZXML') is null "
+  QUERY(02) = "IF object_id('ZXML') is not null DROP TABLE ZXML"
+  QUERY(05) = "  CREATE TABLE ZXML ("
+  QUERY(07) = "    id INT PRIMARY KEY IDENTITY"
+  QUERY(10) = "   ,num VARCHAR(50)"
+  QUERY(15) = "   ,part VARCHAR(50)"
+  QUERY(20) = "   ,description VARCHAR(250)"
+  QUERY(25) = "   ,price MONEY" 
+  QUERY(30) = "   ,qntd INT" 
+  QUERY(35) = "   ,config INT"
+
+
+  QUERY(SIZE-1) = ")"
+
+  Execsql From '5' Sql QUERY(0..SIZE-1)
+Return
+
+
+$GET_CONTENT
+    
+  Local Char INSERT : INSERT = "INSERT INTO ZXML " 
+  Local Char INFO
+  Local Char TAG
+  Local Char SQL_FIELD
+
+  If instr(0, MSG, 'cartLineNumber') > 0 and instr(0, MSG, '/cartLineNumber') = 0 
+            
+    Rdseq MSG Using [ZXML]
+    CONTEUDO +=  MSG
+
+    #If pat(MSG, "*??0*")<>0 & len(MSG)<=5
+      #Call ECR_TRACE( "Cart: " + MSG ,0) From GESECRAN  
+      Execsql From '5' Sql INSERT + "(num) VALUES ( '"+vireblc(MSG,2)+"' )"
+      AUX = MSG     
+      Rdseq MSG Using [ZXML]                           
+    #Endif # pat
+           
+  Endif
+      
+
+  # Atualizações
+
+  INFO = "Part"
+  TAG = "partNumber"
+  SQL_FIELD = "part"
+  Gosub UPD
+
+  INFO = "Desc"
+  TAG = "partDescription"
+  SQL_FIELD = "description"
+  Gosub UPD
+
+  INFO = "Unit"
+  TAG = "unitListPrice"
+  SQL_FIELD = "price"
+  Gosub UPD_NUM
+
+  INFO = "Qntd"
+  TAG = "quantity"
+  SQL_FIELD = "qntd"
+  Gosub UPD_NUM
+
+  INFO = "Conf"
+  TAG = "configID"
+  SQL_FIELD = "config"
+  Gosub UPD_NUM
+
+Return
+
+
+# INFO, TAG, SQL_FIELD
+
+$UPD
+  If instr(0, MSG, TAG) > 0 and instr(0, MSG, '/'+TAG) = 0  # & ( pat(AUX, "*??0*")<>0 )     
+    CONTEUDO +=  MSG
+    Rdseq MSG Using [ZXML]
+    #Call ECR_TRACE( INFO+": " + MSG ,0) From GESECRAN
+    Execsql From '5' Sql  "UPDATE ZXML SET "+SQL_FIELD+" = '"+MSG+"' Where num='"+AUX+"'"
+    Rdseq MSG Using [ZXML]    
+  Endif
+Return
+
+$UPD_NUM
+  If instr(0, MSG, TAG) > 0 and instr(0, MSG, '/'+TAG) = 0  # & ( pat(AUX, "*??0*")<>0 )     
+    CONTEUDO +=  MSG
+    Rdseq MSG Using [ZXML]
+    #Call ECR_TRACE( INFO+": " + MSG ,0) From GESECRAN
+    
+    MSG = num$(val(MSG))  # O VALOR 0001 RETORNA ERRO
+
+    Execsql From '5' Sql  "UPDATE ZXML SET "+SQL_FIELD+" = "+MSG+" Where num='"+AUX+"'"
+    Rdseq MSG Using [ZXML]    
+  Endif
+Return
+
+
+# Retorna o cabeçalho da nota
+# ---------------------------
+Funprog GET_HEADER(ZXML)
+  Variable Clbfile ZXML
+End func GET_TAG(ZXML, "cartHeader")
+
+
+# Busca conteúdo de TAG dentro do XML
+# -----------------------------------
+Funprog GET_TAG(STR, TAG_)
+  Variable Clbfile STR
+  Value Char    TAG_
+
+  Local Char TAG(250) : TAG  = TAG_
+  Local Integer POS1  : POS1 = (instr(0, STR, '<'+TAG+'>')+len('<'+TAG+'>'))
+  If (POS1=-1) End '' : Endif
+  Local Integer POS2  : POS2 = (instr(POS1, STR, '</'+TAG+'>')-1)
+  If (POS2=-1) End '' : Endif
+
+End seg$(STR, POS1, POS2)
+
+
+# Busca conteúdo de TAG dentro do XML
+# -----------------------------------
+Funprog GET_NEXT(STR, TAG_, POS)
+  Variable Clbfile STR
+  Variable Integer POS
+  Value Char    TAG_
+
+  STR = mid$(STR, POS, len(STR))
+
+  Local Char TAG(250) : TAG  = TAG_
+  Local Integer POS1  : POS1 = (instr(0, STR, '<'+TAG+'>')+len('<'+TAG+'>'))
+  If (POS1=-1) End '' : Endif
+  Local Integer POS2  : POS2 = (instr(POS1, STR, '</'+TAG+'>')-1)
+  If (POS2=-1) End '' : Endif
+
+End seg$(STR, POS1, POS2)
+
+
+# Busca CNPJ dentro de um Char
+# ----------------------------
+Funprog GET_CNPJ(STR)
+  Value Clbfile STR
+  Local Char CNPJ(19)
+  Local Integer I : I = 0
+ # String para testes
+ #STR = 'EXPEDITORS INTERNATIONAL DO BRASIL LTDACNPJ:00.711.083/00012-80RUA MARECHAL DEODORO, 869 - CJS. 405/406 - CEP: 80.060-010 - CENTRO'
+
+  # Verifica se há uma label 'CNPJ:'
+  If pat(STR, '*CNPJ:*??.???.???/?????-??*')=1
+    Local Integer POS : POS = instr(0, STR, 'CNPJ: ')+6
+    End seg$(STR, POS, POS+19)#----
+    End ctrans(seg$(STR, POS, POS+18), './-', '')
+  # Se não houver faz busca bruta
+  Elsif pat(STR, '*??.???.???/?????-??*')=1
+    Repeat
+      CNPJ = seg$(STR, I, I+19)
+      I += 1
+    Until (pat(CNPJ, '??.???.???/?????-??')=1 or I+19=len(STR))
+    End ctrans(CNPJ, './-', '')
+  Endif
+
+End 'CNPJ não encontrado.'
+
+
+
+
+

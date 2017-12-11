@@ -1,0 +1,26 @@
+{
+    "name": "x3-code",
+    "displayName": "X3 Code",
+    "description": "Sage X3 4gl Syntax Highlight",
+    "version": "0.0.1",
+    "publisher": "LeonardoMomente",
+    "engines": {
+        "vscode": "^1.18.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "x3",
+            "aliases": ["4GL X3 Adonix ", "x3"],
+            "extensions": [".src"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "x3",
+            "scopeName": "source.src",
+            "path": "./syntaxes/x3.tmLanguage"
+        }]
+    }
+}
