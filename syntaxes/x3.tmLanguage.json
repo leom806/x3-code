@@ -4,15 +4,26 @@
 	"patterns": [
 		{
 			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
 		}
 	],
 	"repository": {
 		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.x3",
+				"match": "\\b(if|while|endif|for|return)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.x3",
+			"begin": "\"",
+			"end": "\"",
 			"patterns": [
 				{
-					"name" : "string.quoted.double.x3",
-					"begin": "\"",
-					"end": "\""
+					"name": "constant.character.escape.x3",
+					"match": "\\\\."
 				}
 			]
 		}
