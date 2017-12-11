@@ -5,11 +5,9 @@
 
 ## Requirements
 
-Create a `x3-code` named folder inside your `/.vscode/extensions/`.
-
-Copy all files in yours recent created folder. 
-
-Reload VS Code and enjoy.
+ - Create a `x3-code` named folder inside your `/.vscode/extensions/`;
+ - Copy all files in yours recent created folder;
+ - Reload VS Code and enjoy;
 
 ## Release Notes
 
