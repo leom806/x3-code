@@ -21,10 +21,18 @@
 				"name": "storage.type.x3",
 				"match": "\\b(?i:Subprog|Funprog|End|Return|Resume|valeur|lbout|cbout|bout|reponse|cle_art|action)\\b"
 			},{
+				"name":"storage.type.x3",
+				"match": "\\b(?&lt;![\\.\\$])(?i:Char|Date|Decimal|Float|Double|Integer|Libelle|Shortint|Schar|Blbfile|Clbfile|File|Struct|Instance|Mask|Infbox|Inpbox|Mesbox|Dlgbox|Onkey|Onevent)(?!\\s*:)\\b"	
+			},{
+				"name":"storage.type.x3",
+				"match": "\\$[A-Za-z0-9_]+"
+			},{
 				"name":"entity.name.function.x3",
 				"match": "\\b(?i:func|abs|mod|rnd|sgn|sqr|ar2|arr|fix|int|ascii|len|parse|pat|val|day|dayn|month|nday|week|year|anp|cnp|fac|avg|find|max|min|sum|prd|uni|var|sigma|cos|sin|tan|acos|asin|atan|ach|ash|ath|ch|sh|th|exp|ln|log|clalev|clanbs|clasiz|filinfo|filelev|nbrecord|rowcount|uniqid|adxseek|inpmode|varinit|masklev|masknbf|maskrk|masksiz|adxpid|adxtcp|adxuid|dim|errl|errn|errp|freemem|nbruser|time|type|varmode|ctrans|tolower|toupper|vireblc|errm|clanam|clavar|maskabr|maskcou|masknam|adxmac|adxpam|adxpno|filcom|filpath|instr|mess|trtcou|addmonth|aweek|eomonth|evalue|adxcio|adxioa|adxnfs|filecla|filetyp|maskcla|progcan|progldd|progsiz|progusd|pi|xgetchar)\\b"
+			},{
+				"name":"entity.name.function.x3",
+				"match": "\\b(?i:chr|graph|space|string|left|mid|right|seg|errmes|cop|day|dir|format|getenv|month|num|time|date|gdat|nday|ver)\\$"
 			}
-		
 			]
 		},
 		"strings": {
