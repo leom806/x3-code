@@ -25,7 +25,7 @@
 				"match": "\\b(?i:func|abs|mod|rnd|sgn|sqr|ar2|arr|fix|int|ascii|len|parse|pat|val|day|dayn|month|nday|week|year|anp|cnp|fac|avg|find|max|min|sum|prd|uni|var|sigma|cos|sin|tan|acos|asin|atan|ach|ash|ath|ch|sh|th|exp|ln|log|clalev|clanbs|clasiz|filinfo|filelev|nbrecord|rowcount|uniqid|adxseek|inpmode|varinit|masklev|masknbf|maskrk|masksiz|adxpid|adxtcp|adxuid|dim|errl|errn|errp|freemem|nbruser|time|type|varmode|ctrans|tolower|toupper|vireblc|errm|clanam|clavar|maskabr|maskcou|masknam|adxmac|adxpam|adxpno|filcom|filpath|instr|mess|trtcou|addmonth|aweek|eomonth|evalue|adxcio|adxioa|adxnfs|filecla|filetyp|maskcla|progcan|progldd|progsiz|progusd|pi|xgetchar)\\b"
 			}
 		
-			] // End of Patterns
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.x3",
