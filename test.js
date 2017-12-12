@@ -4,5 +4,5 @@
 
 module.exports = function(){
   console.log("OK");
-  return 1;
+  return 0;
 };
