@@ -7,14 +7,25 @@
 		},
 		{
 			"include": "#strings"
+		},{
+			"include": "#comments"
 		}
 	],
 	"repository": {
 		"keywords": {
-			"patterns": [{
+			"patterns": [
+			{
 				"name": "keyword.control.x3",
-				"match": "\\b(?i:File|Close|Look|Read|Readlock|Lock|Unlock|Link|Write|Rewrite|Delete|Update|Filter|Choose|Mask|Transmask|Setmok|Fillbox|Leftbox|Setlbox|Dislbox|Pick|Affzo|Envzo|Effzo|Actzo|Diszo|Grizo|Chgfmt|Chgtbk|Chgtzn|Chgtfd|Chgstl|Titcol|Discombo|Columns|Openi|Openo|Openio|Iomode|Getseq|Putseq|Rdseq|Wrseq|Seek|Field|Formula|Report|Default|Assign|Append|Raz|Kill|Insa|Dela|Sorta|Call|Func|Opadxd|Calliu|Funciu|Gosub|Goto|Onerrgo|Onintgo|Onevent|Onkey|Sleep|Inter|Nointer|Case|When|Endcase|If|Elsif|Else|Endif|For|Next|Repeat|Until|While|Wend|Break|Trbegin|Commit|Rollback|Anasql|Execsql|Opldap|Clldap|Srldapbs|Srldaplv|Srldaptr|Nxldap|Askui|Blk|Callilog|Callocx|Callui|Calljs|Dbgaff|Edi|Getui|Infbox|Listimp|Men|Nap|Pikltb|Pokltb|Pmt|Reb|Run|Seldest|Selimp|Send|Setfct|Setlob|Setmdu|System|Enable|Disable|Addmen|Additm|Inftxt|Infimg|Hlpbox|Setmode|Boxact|Boxinp|Inpbox|Mesbox|Errbox|Rptstat|Rptfile|Genws|Genasmx|Convxml|Supli|Selbox|Qstbox|Wrnbox|Endbox|Dbgbox|Opsock|Setstc|Setinstance|Titled|Insli|Saizo|Free|Freeinstance|Setgus|Boxclr|Fmethod|Where|Hint|Using|Order|With|Newstc|Newinstance|Not|First|Last|Curr|Prev|Button|Coded|As|Folder|Listbox|Treebox|Pickbox)\\b"
-			}]
+				"match": "\\b(?i:File|Close|Look|Read|Readlock|Lock|Unlock|Link|Write|Rewrite|Delete|Update|Filter|Choose|Mask|Transmask|Setmok|Fillbox|Leftbox|Setlbox|Dislbox|Pick|Affzo|Envzo|Effzo|Actzo|Diszo|Grizo|Chgfmt|Chgtbk|Chgtzn|Chgtfd|Chgstl|Titcol|Discombo|Columns|Openi|Openo|Openio|Iomode|Getseq|Putseq|Rdseq|Wrseq|Seek|Field|Formula|Report|Default|Assign|Append|Raz|Kill|Insa|Dela|Sorta|Call|Func|Opadxd|Calliu|Funciu|Gosub|Goto|Onerrgo|Onintgo|Onevent|Onkey|Sleep|Inter|Nointer|Case|When|Endcase|If|Elsif|Else|Endif|For|Next|Repeat|Until|While|Wend|Break|Trbegin|Commit|Rollback|Anasql|Execsql|Opldap|Clldap|Srldapbs|Srldaplv|Srldaptr|Nxldap|Askui|Blk|Callilog|Callocx|Callui|Calljs|Dbgaff|Edi|Getui|Infbox|Listimp|Men|Nap|Pikltb|Pokltb|Pmt|Reb|Run|Seldest|Selimp|Send|Setfct|Setlob|Setmdu|System|Enable|Disable|Addmen|Additm|Inftxt|Infimg|Hlpbox|Setmode|Boxact|Boxinp|Inpbox|Mesbox|Errbox|Rptstat|Rptfile|Genws|Genasmx|Convxml|Supli|Selbox|Qstbox|Wrnbox|Endbox|Dbgbox|Opsock|Setstc|Setinstance|Titled|Insli|Saizo|Free|Freeinstance|Setgus|Boxclr|Fmethod|Where|Hint|Using|Order|With|Newstc|Newinstance|Not|First|Last|Curr|Prev|Button|Coded|As|Folder|Listbox|Treebox|Pickbox|From|With|Where|Order|Key|Using|To|Step|Then|Sized|As|Maxrows|Hint|Nohint|At|Sql|Allocgroup|By|Asc|Desc|Lockwait|Starting|Folder|Button|Coded)\\b"
+			},{
+				"name": "storage.type.x3",
+				"match": "\\b(?i:Subprog|Funprog|End|Return|Resume|valeur|lbout|cbout|bout|reponse|cle_art|action)\\b"
+			},{
+				"name":"entity.name.function.x3",
+				"match": "\\b(?i:func|abs|mod|rnd|sgn|sqr|ar2|arr|fix|int|ascii|len|parse|pat|val|day|dayn|month|nday|week|year|anp|cnp|fac|avg|find|max|min|sum|prd|uni|var|sigma|cos|sin|tan|acos|asin|atan|ach|ash|ath|ch|sh|th|exp|ln|log|clalev|clanbs|clasiz|filinfo|filelev|nbrecord|rowcount|uniqid|adxseek|inpmode|varinit|masklev|masknbf|maskrk|masksiz|adxpid|adxtcp|adxuid|dim|errl|errn|errp|freemem|nbruser|time|type|varmode|ctrans|tolower|toupper|vireblc|errm|clanam|clavar|maskabr|maskcou|masknam|adxmac|adxpam|adxpno|filcom|filpath|instr|mess|trtcou|addmonth|aweek|eomonth|evalue|adxcio|adxioa|adxnfs|filecla|filetyp|maskcla|progcan|progldd|progsiz|progusd|pi|xgetchar)\\b"
+			}
+		
+			] // End of Patterns
 		},
 		"strings": {
 			"name": "string.quoted.double.x3",
@@ -24,6 +35,15 @@
 				{
 					"name": "constant.character.escape.x3",
 					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.line.number-sign.x3",
+			"patterns": [
+				{
+					"name":"comment.line.number-sign",
+					"match": "(#).*$\n?"
 				}
 			]
 		}
