@@ -28,7 +28,7 @@
 				"match": "\\$[A-Za-z0-9_]+"
 			},{
 				"name":"storage.type.x3",
-				"match": "(\\[(M|F|G).*?\\])"
+				"match": "(\\[.*?\\])"
 			},{
 				"name":"variable.other.x3",
 				"match": "[A-Za-z_][A-Za-z0-9_]*"
