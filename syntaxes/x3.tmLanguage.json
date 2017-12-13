@@ -1,6 +1,8 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "x3",
+	"foldingStartMarker": "#region.*\\$",
+	"foldingStopMarker": "#endregion.*\\$",
 	"patterns": [
 		{
 			"include": "#keywords"
