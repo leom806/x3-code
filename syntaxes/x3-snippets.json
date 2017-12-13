@@ -21,9 +21,9 @@
   "ACTION":{
     "prefix": "action",
     "body": [
-      "$ACTION",
+      "$$ACTION",
       "  Case ACTION",
-      "    When \"${1|OUVRE|}       :   Gosub ${2|OUVRE|}\"",
+      "    When \"${1|OUVRE|}\"       :   Gosub ${2|OUVRE|}",
       "  Endcase",
       "Return",
       "$3"
