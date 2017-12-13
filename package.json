@@ -1,29 +1,43 @@
 {
-    "name": "x3-code",
-    "displayName": "X3 Code",
-    "description": "Sage X3 4gl Syntax Highlight",
-    "version": "1.0.2",
-    "publisher": "LeonardoMomente",
-    "engines": {
-        "vscode": "^1.18.0"
-    },
-    "categories": [
-        "Languages"
-    ],
-    "contributes": {
-        "languages": [{
-            "id": "x3",
-            "aliases": ["4GL X3 Adonix ", "x3"],
-            "extensions": [".src"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "x3",
-            "scopeName": "source.src",
-            "path": "./syntaxes/x3.tmLanguage.json"
-        }]
-    },
-    "scripts": {
-        "test": "node test.js"
-    }
+	"name": "x3-code",
+	"displayName": "Sage ERP X3",
+	"description": "Sage X3 4gl Syntax Highlight",
+	"version": "1.0.3",
+	"publisher": "momente",
+	"engines": {
+		"vscode": "^1.18.0"
+	},
+	"categories": [
+		"Languages"
+	],
+	"contributes": {
+		"languages": [
+			{
+				"id": "x3",
+				"aliases": [
+					"4GL X3 Adonix ",
+					"x3"
+				],
+				"extensions": [
+					".src"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "x3",
+				"scopeName": "source.src",
+				"path": "./syntaxes/x3.tmLanguage.json"
+			}
+		]
+	},
+	"scripts": {
+		"test": "node test.js"
+	},
+	"__metadata": {
+		"id": "7edf069b-cd46-491c-b4ac-03061d50b3c7",
+		"publisherDisplayName": "Leonardo Momente",
+		"publisherId": "95cace30-50a8-4b94-85ad-20e0a4915a34"
+	}
 }
