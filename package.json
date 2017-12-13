@@ -2,7 +2,7 @@
 	"name": "x3-code",
 	"displayName": "Sage ERP X3",
 	"description": "Syntax Highlight",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"publisher": "momente",
 	"engines": {
 		"vscode": "^1.18.0"
