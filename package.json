@@ -1,7 +1,7 @@
 {
 	"name": "x3-code",
 	"displayName": "Sage ERP X3",
-	"description": "Sage X3 4gl Syntax Highlight",
+	"description": "Syntax Highlight",
 	"version": "1.0.4",
 	"publisher": "momente",
 	"engines": {
@@ -10,6 +10,12 @@
 	"categories": [
 		"Languages"
 	],
+	"icon": "logo.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/leom806/x3-code/"
+	},
+	"homepage": "https://github.com/leom806/x3-code/master/README.md",
 	"contributes": {
 		"languages": [
 			{
@@ -31,7 +37,11 @@
 				"scopeName": "source.src",
 				"path": "./syntaxes/x3.tmLanguage.json"
 			}
-		]
+		],
+		"snippets": [{
+			"language": "x3",
+			"path": "./syntaxes/x3-snippets.json"
+		}]
 	},
 	"scripts": {
 		"test": "node test.js"
