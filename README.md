@@ -7,7 +7,7 @@
 
 ## Requirements
 
- - Create a `x3-code` named folder inside your `/.vscode/extensions/`;
+ - Create a `x3-code` named folder inside your `~/.vscode/extensions/`;
  - Copy all files in yours recent created folder;
  - Reload VS Code and enjoy;
 
@@ -15,7 +15,7 @@
 
 Initial version, personal project.
 
-### Current version: 1.0.2
+### Current version: 1.0.8
 
 -----------------------------------------------------------------------------------------------------------
 
@@ -23,6 +23,6 @@ Initial version, personal project.
 
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-* [Author's Webpage](https://leomomente.herokuapp.com)
+* [Author's Webpage](https://www.linkedin.com/in/leonardomomente)
 
 **Enjoy**
