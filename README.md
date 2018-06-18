@@ -23,6 +23,6 @@ Initial version, personal project.
 
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-* [Author's Webpage](https://www.linkedin.com/in/leonardomomente)
+* [Author's Webpage](https://www.linkedin.com/in/leonardomomente/)
 
 **Enjoy**
