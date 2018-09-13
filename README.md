@@ -13,9 +13,11 @@
 
 ## Release Notes
 
+  > 1.1.0: Lost highlight issue solved. Block comments improved, #*! get highlight as well as #. 
+
 Initial version, personal project.
 
-### Current version: 1.0.9
+### Current version: 1.1.0
 
 -----------------------------------------------------------------------------------------------------------
 
