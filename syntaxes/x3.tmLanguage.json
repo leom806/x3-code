@@ -54,23 +54,13 @@
 			"name": "string.quoted.double.x3",
 			"begin": "\"",
 			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.x3",
-					"match": "\\\\."
-				}
-			]
+			"patterns": []
 		},
 		"strings_single": {
 			"name": "string.quoted.single.x3",
 			"begin": "'",
 			"end": "'",
-			"patterns": [
-				{
-					"name": "constant.character.escape.x3",
-					"match": "\\\\."
-				}
-			]
+			"patterns": []
 		},
 		"comments": {
 			"name": "comment.line.number-sign.x3",
@@ -85,7 +75,7 @@
 			"patterns": [
 				{
 					"name":"comment.block.documentation.x3",
-					"match": "(#**|#*).*(#*!)$\n?"
+					"match": "(^#**).*(^#*!)\n?"
 				}
 			]
 		}
