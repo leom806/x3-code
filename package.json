@@ -1,14 +1,14 @@
 {
 	"name": "x3-code",
-	"displayName": "Sage ERP X3",
+	"displayName": "Sage Enterprise Management (Sage X3)",
 	"description": "Syntax Highlight",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"publisher": "momente",
 	"engines": {
 		"vscode": "^1.18.0"
 	},
 	"categories": [
-		"Languages"
+		"Programming Languages"
 	],
 	"icon": "logo.png",
 	"repository": {
