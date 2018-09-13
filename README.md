@@ -1,4 +1,4 @@
-# Sage ERP X3 (Adonix 4GL) Syntax Highlighting 
+# Sage Enterprise Management (Sage X3) (Adonix 4GL) Syntax Highlighting 
 
 > Extension feature for Visual Studio Code 
 
@@ -15,7 +15,7 @@
 
 Initial version, personal project.
 
-### Current version: 1.0.8
+### Current version: 1.0.9
 
 -----------------------------------------------------------------------------------------------------------
 
